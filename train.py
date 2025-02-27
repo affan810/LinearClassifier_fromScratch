@@ -43,13 +43,14 @@ class LogisticRegression:
             self.weights -= self.learning_rate * dw
             self.bias -= self.learning_rate * db
 
+            #deletes the object activation to avoid extented memory usage
             del activation
 
     def predict(self, X):
         linear_model = np.dot(X, self.weights) + self.bias
         activation = Activation_functions(classifierchoice)
         y_predicted = activation.activate(linear_model)    
-        return [1 if i > 0.5 else 0 for i in y_predicted]
+        return [1 if i > 0.5 else 0 for i in y_predicted] #created boundery of >0.5 for classification
 
 # Generate synthetic data
 data1 = DataGenration(noise_level='low')
